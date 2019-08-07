@@ -23,7 +23,7 @@ class Blog extends Component {
                                     color: '#fa923f',
                                     textDecoration: 'underline'                     
                                 }}
-                                exact>Home</NavLink></li>
+                                exact>Posts</NavLink></li>
                             <li>
                                 <NavLink to={{
                                     pathname: '/new-post',
