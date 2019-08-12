@@ -4,26 +4,6 @@ import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
 class Counter extends Component {
-    state = {
-        counter: 0
-    }
-
-    counterChangedHandler = ( action, value ) => {
-        switch ( action ) {
-            case 'inc':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
-                break;
-            case 'dec':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - 1 } } )
-                break;
-            case 'add':
-                this.setState( ( prevState ) => { return { counter: prevState.counter + value } } )
-                break;
-            case 'sub':
-                this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
-                break;
-        }
-    }
 
     render () {
         return (
@@ -31,8 +11,8 @@ class Counter extends Component {
                 <CounterOutput value={this.props.ctr} />
                 <CounterControl label="Increment" clicked={this.props.onIncrementCounter} />
                 <CounterControl label="Decrement" clicked={this.props.onDecrementCounter}  />
-                <CounterControl label="Add 5" clicked={this.props.onIncrementCounterByFive}  />
-                <CounterControl label="Subtract 5" clicked={this.props.onDecrementCounterByFive}  />
+                <CounterControl label="Add 5" clicked={this.props.onAdd}  />
+                <CounterControl label="Subtract 5" clicked={this.props.onSubtract}  />
             </div>
         );
     }
@@ -48,8 +28,8 @@ const mapDispatchToProps = dispatch => {
     return {
         onIncrementCounter: () => dispatch({type: 'INCREMENT'}),
         onDecrementCounter: () => dispatch({type: 'DECREMENT'}),
-        onIncrementCounterByFive: () => dispatch({type: 'INCREMENT_BY_FIVE'}),
-        onDecrementCounterByFive: () => dispatch({type: 'DECREMENT_BY_FIVE'})
+        onAdd: () => dispatch({type: 'ADD', val: 5}),
+        onSubtract: () => dispatch({type: 'SUBTRACT', val: 5})
     };
 };
 
