@@ -8,11 +8,11 @@ import AddPerson from '../components/AddPerson/AddPerson';
 
 class Persons extends Component {
 
-    personAddedHandler = () => {
+    personAddedHandler = (name, age) => {
         const newPerson = {
             id: Math.random(), // not really unique but good enough here!
-            name: 'Max',
-            age: Math.floor( Math.random() * 40 )
+            name: name,
+            age: age
         }
         this.props.addPerson(newPerson);
     }
