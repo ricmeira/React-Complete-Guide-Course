@@ -1,0 +1,15 @@
+{
+    "presets": [
+        [
+            "@babel/present-env", {
+            "targets": {
+                "browsers": ["> 1%", "last 2 versions"]
+            }
+        }
+        ],
+        "@babel/preset-react"
+    ],
+    "pluguins": [
+        "@babel/plugin-proposal-class-properties"
+    ]
+}
