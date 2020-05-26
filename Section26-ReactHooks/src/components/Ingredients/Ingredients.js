@@ -8,10 +8,24 @@ const Ingredients = () => {
   const [ ingredients, setIngredients ] = useState([]);
 
   const addIngredientHandler = ingredient => {
-    setIngredients(prevIngredients => [
-      ...prevIngredients,
-      {id: Math.random().toString(), ...ingredient}
-    ]);
+    fetch('https://react-hooks-course-e1cc5.firebaseio.com/ingredients.json', {
+      method: 'POST',
+      body: JSON.stringify(ingredient),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).then(response => {
+      return response.json();
+    }).then(responseData => {
+      setIngredients(prevIngredients => [
+        ...prevIngredients,
+        {id: responseData.name, ...ingredient}
+      ]);
+    });
+  };
+
+  const removeIngredientHandler = id => {
+    setIngredients(prevIngredients => prevIngredients.filter(ingr => ingr.id !== id));
   };
 
   return (
@@ -20,7 +34,7 @@ const Ingredients = () => {
 
       <section>
         <Search />
-        <IngredientList ingredients={ingredients} onRemoveItem={() => {}}/>
+        <IngredientList ingredients={ingredients} onRemoveItem={removeIngredientHandler}/>
       </section>
     </div>
   );
