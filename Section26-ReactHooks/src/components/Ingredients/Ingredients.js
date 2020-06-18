@@ -29,7 +29,11 @@ const Ingredients = () => {
   };
 
   const removeIngredientHandler = id => {
-    setIngredients(prevIngredients => prevIngredients.filter(ingr => ingr.id !== id));
+    fetch(`https://react-hooks-course-e1cc5.firebaseio.com/ingredients/${id}.json`, {
+      method: 'DELETE'
+    }).then(response => {
+      setIngredients(prevIngredients => prevIngredients.filter(ingr => ingr.id !== id));
+    });
   };
 
   return (
