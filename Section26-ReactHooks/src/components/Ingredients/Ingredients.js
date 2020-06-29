@@ -21,7 +21,7 @@ const ingredientReducer = (currentIngredients, action) => {
 
 const Ingredients = () => {
   const [ ingredients, dispatch ] = useReducer(ingredientReducer, []);
-  const { isLoading, error, data, reqExtra, reqIdentifier, sendRequest } = useHttp();
+  const { isLoading, error, data, reqExtra, reqIdentifier, sendRequest, clear } = useHttp();
   //const [ ingredients, setIngredients ] = useState([]);
   //const [ isLoading, setIsLoading ] = useState(false);
   //const [ error, setError ] = useState();
@@ -73,7 +73,7 @@ const Ingredients = () => {
 
   const removeIngredientHandler = useCallback(id => {
     sendRequest(
-      `https://react-hooks-course-e1cc5.firebaseio.com/ingredients/${id}.json`,
+      `https://react-hooks-course-e1cc5.firebaseio.com/ingredients/${id}.jon`,
       'DELETE',
       null,
       id,
@@ -81,15 +81,11 @@ const Ingredients = () => {
     );
   }, [sendRequest]);
 
-  const clearError = useCallback(() => {
-    //dispatchHttp({ type: 'CLEAR'});
-  }, []);
-
   const ingredientList = useMemo(() => <IngredientList ingredients={ingredients} onRemoveItem={removeIngredientHandler}/>, [ ingredients, removeIngredientHandler ]);
 
   return (
     <div className="App">
-      {error && <ErrorModal onClose={clearError}>{error}</ErrorModal>}
+      {error && <ErrorModal onClose={clear}>{error}</ErrorModal>}
       <IngredientForm onAddIngredient={addIngredientHandler} loading={isLoading}/>
 
       <section>
